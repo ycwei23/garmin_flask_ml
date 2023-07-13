@@ -1,15 +1,13 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import json
 
 app = Flask(__name__)
 
-#用flask 呈現index.html
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return render_template('index.html')
 
 
- 
 
 @app.route('/api', methods=['POST'])
 def process_request():
