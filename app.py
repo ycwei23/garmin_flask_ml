@@ -6,7 +6,7 @@ app = Flask(__name__)
 def process_request():
     data = request.get_json()
     
-    response = {'message': '成功', 'data': data}
+    response = data
     
     return jsonify(response)
 
