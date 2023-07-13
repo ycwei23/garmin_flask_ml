@@ -18,5 +18,5 @@ if __name__ == '__main__':
 
 #寫一個function，讀入json資料，並且建立一個新的json檔案，並且把資料寫入
 def write_json(data, filename):
-    with open('../jsonData/' + filename,'w') as f:
+    with open('jsonData/' + filename,'w') as f:
         json.dump(data, f, indent=4)
