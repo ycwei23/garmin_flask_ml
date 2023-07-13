@@ -3,10 +3,11 @@ import json
 
 app = Flask(__name__)
 
-#用flask return index.html
-@app.route('/', methods=['GET'])
+#用flask 呈現index.html
+@app.route('/')
 def index():
     return app.send_static_file('index.html')
+
 
  
 
