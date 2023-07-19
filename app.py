@@ -1,4 +1,4 @@
-!/home/ec2-user/garmin_flask_ml/myenv/bin/python
+#!/home/ec2-user/garmin_flask_ml/myenv/bin/python
 from flask import Flask, request, jsonify, render_template
 import pyhrv.frequency_domain as fd
 import numpy as np
