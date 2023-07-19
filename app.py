@@ -24,10 +24,6 @@ def process_request():
     
     return jsonify(response)
 
-@app.route('/api/iosapp/test', methods=['POST'])
-def api_iosapp_bbi_analysis():
-    data = request.get_json()
-    return jsonify(data)
 
 @app.route('/api/iosapp/bbi_analysis', methods=['POST'])
 def api_iosapp_bbi_analysis():
