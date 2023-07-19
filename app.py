@@ -31,26 +31,35 @@ def api_iosapp_bbi_analysis():
     #這個data就是iosapp傳過來的資料，是json個格式
     #要取data裡的"garmin_data_bbi"
 
+    for item in data['garmin_data_bbi'] :
+        timestamp = item['timestamp'] / 1000
+        datetime_obj = datetime.fromtimestamp(timestamp)
+        #秒數到小數地3位
+        formatted_datetime = datetime_obj.strftime("%H:%M:%S.%f")
+
+        item['timestamp'] = formatted_datetime
+
+
     timestamps = []
-    bbi_values = []
+    values = []
 
-    # 解析數據並提取時間戳和 BBI 值
-    for entry in data:
-        if 'timeStamp' in entry and 'BBI' in entry:
+    # 解析數據中的時間和數值
+    for entry in reversed(data["garmin_data_bbi"]):
+        if 'timestamp' in entry:
             timestamp_str = entry['timestamp']
-            bbi_value = float(entry['bbi'])
+            value = float(entry['bbi'])
 
-            # 解析時間戳格式
+            # 解析時間格式
             timestamp = datetime.strptime(timestamp_str, '%H:%M:%S.%f')
 
             timestamps.append(timestamp)
-            bbi_values.append(bbi_value)
-
-    # 將時間戳轉換為秒數
+            values.append(value)
+    # 轉換時間為秒數
     time_in_seconds = [(t - timestamps[0]).total_seconds() for t in timestamps]
 
-    # 計算 RR 間隔（單位：秒）
+    # 計算心跳間隔（RR間期）
     rr_intervals = np.diff(time_in_seconds)
+    print(rr_intervals)
 
     # 計算平均 RR 間隔和 SDNN（標準差）
     mean_rr_interval = np.mean(rr_intervals)
@@ -77,19 +86,21 @@ def api_iosapp_bbi_analysis():
 
     # 計算SD1/SD2
     sd1_sd2_ratio = round(sd1 / sd2, 3)
-    
+
     #這個key值裡的結構者這樣
     """
-    "garmin_data_bbi" : [
-        {
-            "timestamp" : 1689752533567,
-            "bbi" : 668
-        },
-        {
-            "timestamp" : 1689752531903,
-            "bbi" : 622
-        }
-    ]
+    {
+        "garmin_data_bbi" : [
+            {
+                "timestamp" : 1689752533567,
+                "bbi" : 668
+            },
+            {
+                "timestamp" : 1689752531903,
+                "bbi" : 622
+            }
+        ]
+    }
     """
     #是一個array
     sd1 = sd1
