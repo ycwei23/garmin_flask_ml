@@ -37,8 +37,8 @@ def api_iosapp_bbi_analysis():
     # 解析數據並提取時間戳和 BBI 值
     for entry in data:
         if 'timeStamp' in entry and 'BBI' in entry:
-            timestamp_str = entry['timeStamp']
-            bbi_value = float(entry['BBI'])
+            timestamp_str = entry['timestamp']
+            bbi_value = float(entry['bbi'])
 
             # 解析時間戳格式
             timestamp = datetime.strptime(timestamp_str, '%H:%M:%S.%f')
