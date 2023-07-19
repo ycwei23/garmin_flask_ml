@@ -18,9 +18,8 @@ def index():
 def process_request():
     data = request.get_json()
     
+
     response = data
-    filename = data['username']
-    write_json(data, filename)
     
     return jsonify(response)
 
@@ -116,7 +115,7 @@ def api_iosapp_bbi_analysis():
     }
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=80)
 
 #寫一個function，讀入json資料，並且建立一個新的json檔案，並且把資料寫入
 def write_json(data, filename):
