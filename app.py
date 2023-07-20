@@ -163,17 +163,7 @@ def api_iosapp_bbi_analysis():
             "sdsd_content" : sdsd_content
         }
 
-        # 將JSON資料轉換成字串
-        json_string1 = jsonify(data1).json
-
-        # 將JSON字串轉換成bytes
-        json_bytes1 = json_string1.encode('utf-8')
-
-        # 使用gzip壓縮JSON字串
-        compressed_data = gzip.compress(json_bytes1)
-
-        # 回傳壓縮後的資料，設定Content-Type為application/json和Content-Encoding為gzip
-        return Response(compressed_data, content_type='application/json', headers={'Content-Encoding': 'gzip'})
+        return jsonify(data1)
 
 if __name__ == '__main__':
     app.run()
