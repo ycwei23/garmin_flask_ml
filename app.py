@@ -35,8 +35,14 @@ def process_post_request():
     # gzip 解壓縮
     uncompressed_data = gzip.decompress(decoded_data)
 
-    print(uncompressed_data)
-    print(type(uncompressed_data))
+    # 解碼為 UTF-8 字串
+    json_string = uncompressed_data.decode('utf-8')
+
+    # 轉換成 JSON
+    parsed_json = json.loads(json_string)
+
+    print(parsed_json)
+    print(type(parsed_json))
     return 'Success', 200
 
 
