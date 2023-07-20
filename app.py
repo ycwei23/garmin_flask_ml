@@ -36,6 +36,7 @@ def process_post_request():
     uncompressed_data = gzip.decompress(decoded_data)
 
     print(uncompressed_data)
+    print(type(uncompressed_data))
     return 'Success', 200
 
 
