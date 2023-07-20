@@ -1,5 +1,5 @@
 #!/home/ec2-user/garmin_flask_ml/myenv/bin/python
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, Response
 import pyhrv.frequency_domain as fd
 import numpy as np
 import scipy.interpolate as interp
@@ -150,7 +150,7 @@ def api_iosapp_bbi_analysis():
         sd1_sd2_content = "這裡是sd1_sd2的分析"
         sdnn_content = "這裡是sdnn的分析"
         sdsd_content = "這裡是sdsd的分析"
-        return {
+        data1 =  {
             "sd1" : sd1,
             "sd2" : sd2,
             "sd1_sd2" : sd1_sd2,
@@ -162,6 +162,18 @@ def api_iosapp_bbi_analysis():
             "sdnn_content" : sdnn_content,
             "sdsd_content" : sdsd_content
         }
+
+        # 將JSON資料轉換成字串
+        json_string1 = jsonify(data1).json
+
+        # 將JSON字串轉換成bytes
+        json_bytes1 = json_string1.encode('utf-8')
+
+        # 使用gzip壓縮JSON字串
+        compressed_data = gzip.compress(json_bytes1)
+
+        # 回傳壓縮後的資料，設定Content-Type為application/json和Content-Encoding為gzip
+        return Response(compressed_data, content_type='application/json', headers={'Content-Encoding': 'gzip'})
 
 if __name__ == '__main__':
     app.run()
