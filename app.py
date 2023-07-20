@@ -30,6 +30,7 @@ def process_request():
 def process_post_request():
     data = request.get_data()
     # Base64 解碼
+    # Base64 解碼
     decoded_data = base64.b64decode(data)
 
     # gzip 解壓縮
@@ -41,9 +42,14 @@ def process_post_request():
     # 轉換成 JSON
     parsed_json = json.loads(json_string)
 
+    # 將 parsed_json 轉換成 JSON 格式的字串
+    json_data = json.dumps(parsed_json)
+
+    
+
     print(parsed_json)
     print(type(parsed_json))
-    return 'Success', 200
+    return json_data
 
 
 @app.route('/api/iosapp/bbi_analysis', methods=['POST'])
