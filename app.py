@@ -24,9 +24,20 @@ def process_request():
     
     return jsonify(response)
 
-@app.route('/api/aaa', methods=['POST'])
-def process_request1():
-    return request
+@app.route('/api/endpoint', methods=['POST'])
+def process_post_request():
+    # 確保 Content-Type 為 text/plain
+    if request.headers['Content-Type'] == 'text/html ; charset=UTF-8':
+        # 獲取 POST 請求的內容
+        text_data = request.data
+        # 處理文字資料
+        # 在這裡加入您想要的資料處理邏輯
+        # 例如，將文字資料轉換為 JSON 格式或其他格式
+
+        # 回傳回應
+        return 'Success', 200
+    else:
+        return 'Unsupported Media Type', 41
 
 
 @app.route('/api/iosapp/bbi_analysis', methods=['POST'])
