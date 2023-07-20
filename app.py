@@ -5,6 +5,8 @@ import numpy as np
 import scipy.interpolate as interp
 from datetime import datetime
 import json
+import gzip
+import base64
 
 
 app = Flask(__name__)
@@ -27,8 +29,13 @@ def process_request():
 @app.route('/api/endpoint', methods=['POST'])
 def process_post_request():
     data = request.get_data()
-    print(data)
-    print("type of data: ", type(data))
+    # Base64 解碼
+    decoded_data = base64.b64decode(data)
+
+    # gzip 解壓縮
+    uncompressed_data = gzip.decompress(decoded_data)
+
+    print(uncompressed_data)
     return 'Success', 200
 
 
