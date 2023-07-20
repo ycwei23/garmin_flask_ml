@@ -26,10 +26,10 @@ def process_request():
 
 @app.route('/api/endpoint', methods=['POST'])
 def process_post_request():
-    # 確保 Content-Type 為 text/plain
-    data = request.get_data(as_text=True)
-    print("type of data: ", type(data))
+    data = request.get_data()
     print(data)
+    print("type of data: ", type(data))
+    return 'Success', 200
 
 
 @app.route('/api/iosapp/bbi_analysis', methods=['POST'])
