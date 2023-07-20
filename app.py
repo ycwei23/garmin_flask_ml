@@ -68,11 +68,7 @@ def api_iosapp_bbi_analysis():
         # 轉換成 JSON
         parsed_json = json.loads(json_string)
 
-        # 將 parsed_json 轉換成 JSON 格式的字串
-        json_data = json.dumps(parsed_json)
-        #要取data裡的"garmin_data_bbi"
-
-        for item in json_data['garmin_data_bbi'] :
+        for item in parsed_json['garmin_data_bbi'] :
             timestamp = item['timestamp'] / 1000
             datetime_obj = datetime.fromtimestamp(timestamp)
             #秒數到小數地3位
@@ -85,7 +81,7 @@ def api_iosapp_bbi_analysis():
         values = []
 
         # 解析數據中的時間和數值
-        for entry in reversed(data["garmin_data_bbi"]):
+        for entry in reversed(parsed_json["garmin_data_bbi"]):
             if 'timestamp' in entry:
                 timestamp_str = entry['timestamp']
                 value = float(entry['bbi'])
