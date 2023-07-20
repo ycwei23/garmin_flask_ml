@@ -140,11 +140,11 @@ def api_iosapp_bbi_analysis():
         }
         """
         #是一個array
-        sd1 = sd1
-        sd2 = sd2
-        sd1_sd2 = sd1_sd2_ratio
-        sdnn = SDNN
-        sdsd = SDSD
+        sd1 = str(round(sd1, 3))
+        sd2 = str(round(sd2, 3))
+        sd1_sd2 = str(round(sd1_sd2_ratio, 3))
+        sdnn = str(round(SDNN, 3))
+        sdsd = str(round(SDSD, 3))
         sd1_content = "這裡是sd1的分析"
         sd2_content = "這裡是sd2的分析"
         sd1_sd2_content = "這裡是sd1_sd2的分析"
@@ -162,6 +162,7 @@ def api_iosapp_bbi_analysis():
             "sdnn_content" : sdnn_content,
             "sdsd_content" : sdsd_content
         }
+
 
         return jsonify(data1)
 
