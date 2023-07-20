@@ -145,11 +145,11 @@ def api_iosapp_bbi_analysis():
         sd1_sd2 = str(round(sd1_sd2_ratio, 3))
         sdnn = str(round(SDNN, 3))
         sdsd = str(round(SDSD, 3))
-        sd1_content = "這裡是sd1的分析"
-        sd2_content = "這裡是sd2的分析"
-        sd1_sd2_content = "這裡是sd1_sd2的分析"
-        sdnn_content = "這裡是sdnn的分析"
-        sdsd_content = "這裡是sdsd的分析"
+        sd1_content = "SD1值 > 副交感神經活性指標 > SD1減少時 副交感神經活性減少 交感神經活性增加"
+        sd2_content = "SD2值 > 交感神經活性指標 > SD2減少時 交感神經活性減少 副交感神經活性增加"
+        sd1_sd2_content = "SD1/SD2值 > 評估心率變異性中短期調節和長期調節之間的平衡狀態 > 反映自律神經系統的平衡情況 >SD1/SD2值較小 較放鬆"
+        sdnn_content = "SDNN > 反映了心率變異性中總體調節的程度 > SDNN值越大 自主神經調節功能較好"
+        sdsd_content = "SDSD > 主要用於評估HRV中的快速變化，即心率的短期調節"
         data1 =  {
             "sd1" : sd1,
             "sd2" : sd2,
